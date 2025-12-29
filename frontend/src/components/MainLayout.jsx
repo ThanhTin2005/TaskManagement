@@ -1,5 +1,6 @@
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Outlet } from 'react-router-dom';
+// KIỂM TRA: Phải import Outlet và Link (nếu dùng Link ở dưới)
+import { useNavigate, Outlet, Link } from 'react-router-dom'; 
 
 export default function MainLayout() {
   const { logout } = useAuth();
@@ -11,41 +12,39 @@ export default function MainLayout() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* 1. SIDEBAR */}
-      <aside className="w-64 bg-blue-800 text-white flex flex-col">
-        <div className="p-6 text-2xl font-bold border-b border-blue-700">
-          Task Manager
+    <div className="flex h-screen bg-gray-100 overflow-hidden">
+      {/* SIDEBAR */}
+      <aside className="w-64 bg-blue-900 text-white flex flex-col shadow-xl">
+        <div className="p-6 text-2xl font-bold border-b border-blue-800">
+          🚀 Task Manager
         </div>
         <nav className="flex-1 p-4">
-          <h3 className="text-xs uppercase text-blue-300 font-semibold mb-4">Danh sách dự án</h3>
-          {/* Tạm thời để tĩnh, Ngày 12 chúng ta sẽ map dữ liệu thật từ API */}
           <ul className="space-y-2">
-            <li className="p-2 hover:bg-blue-700 rounded cursor-pointer transition">📁 Dự án Web React</li>
-            <li className="p-2 hover:bg-blue-700 rounded cursor-pointer transition">📁 Đồ án Cơ sở dữ liệu</li>
+            {/* Dùng Link để chuyển trang không bị load lại web */}
+            <li className="p-3 hover:bg-blue-800 rounded-lg cursor-pointer transition-all">
+               <Link to="/dashboard">📊 Dashboard</Link>
+            </li>
+            <li className="p-3 hover:bg-blue-800 rounded-lg cursor-pointer transition-all text-blue-200">
+               📁 Dự án mẫu 1
+            </li>
           </ul>
         </nav>
       </aside>
 
-      {/* PHẦN BÊN PHẢI (Topbar + Content) */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* 2. TOPBAR */}
-        <header className="h-16 bg-white shadow-sm flex items-center justify-between px-8">
-          <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2>
-          <div className="flex items-center gap-4">
-            <span className="text-gray-600">Chào, <span className="font-bold text-blue-600">User</span></span>
-            <button 
-              onClick={handleLogout}
-              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg hover:bg-red-100 transition font-medium"
-            >
-              Đăng xuất
-            </button>
-          </div>
+      {/* NỘI DUNG BÊN PHẢI */}
+      <div className="flex-1 flex flex-col">
+        <header className="h-16 bg-white border-b flex items-center justify-between px-8">
+          <h2 className="text-lg font-semibold text-gray-700">Hệ thống quản lý</h2>
+          <button 
+            onClick={handleLogout}
+            className="bg-red-50 text-red-600 px-4 py-2 rounded-lg hover:bg-red-600 hover:text-white transition-all font-semibold"
+          >
+            Đăng xuất
+          </button>
         </header>
 
-        {/* 3. MAIN CONTENT */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto p-8">
-          {/* Outlet sẽ là nơi hiển thị nội dung của Dashboard hoặc các trang con khác */}
+        <main className="flex-1 overflow-y-auto p-8 bg-gray-50">
+          {/* Nơi nội dung của Dashboard sẽ hiển thị */}
           <Outlet />
         </main>
       </div>

@@ -1,27 +1,26 @@
-//file này sẽ nhìn lên thanh địa chỉ của trình duyệt để xác định trang nào sẽ hiển thị
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+// KIỂM TRA DÒNG NÀY: Phải có Navigate ở đây
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; 
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Login from './pages/Login2';
-import Register from './pages/Register';
+import MainLayout from './components/MainLayout';
+import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <AuthProvider>
-    <Router>
-      <Routes>
-        {/* Nếu người dùng vào trang chủ "/", tự động đẩy sang "/login" */}
-        <Route path="/" element={<Navigate to="/login" />} />
-
-        {/* Các tuyến đường chính */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          
+          {/* MainLayout bao bọc Dashboard */}
+          <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+            {/* Khi vào trang chủ "/" sẽ tự chuyển hướng sang "/dashboard" */}
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }
