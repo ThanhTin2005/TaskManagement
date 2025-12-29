@@ -1,0 +1,5 @@
+/*khi main.jsx gọi đến file index.css , thì tailwindcss được kích hoạt để chuẩn bị
+màu sắc , font chữ .*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
