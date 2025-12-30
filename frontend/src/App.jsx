@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProjectDetail from './pages/ProjectDetail'; // Chúng ta sẽ tạo file này ở Bước 2
 
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           
           {/* MainLayout bao bọc Dashboard */}
           <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>

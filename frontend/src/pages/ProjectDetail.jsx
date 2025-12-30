@@ -1,3 +1,7 @@
+//File này sẽ thực hiện các yêu cầu của ngày 12 
+// Viết hàm API lấy danh sách task theo projectID 
+//hiển thị tasks dưới dạng thẻ hoặc danh sách
+//hiển thị các thông tin cơ bản : tiêu đề trạng thái , người phụ trách , hạn chót
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';

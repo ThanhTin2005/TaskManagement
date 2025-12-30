@@ -1,3 +1,5 @@
+//file này đã được cập nhật ngày 12 , thêm logic gọi API lấy danh sách dự án và hiển thị động trong sidebar , chứ k phải cố định như ngày 11
+//MainLayout sẽ bao bọc các trang bên trong như Dashboard, ProjectDetail
 import { useState, useEffect } from 'react'; // Giữ lại useState, thêm useEffect
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Outlet, Link } from 'react-router-dom';
