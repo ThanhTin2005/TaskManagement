@@ -19,7 +19,7 @@ exports.getProjectsByUser = async (req, res) => {
         //const { managerId } = req.params;
         const userId = req.user.id; ///Lấy id của user đã được giải mã từ token thông qua middleware authMiddleware  
         console.log("===> Backend đang tìm dự án cho User ID:", userId);
-        const [rows] = await pool.query('SELECT * FROM projects WHERE manager_id = ?', [userId]);
+        const [rows] = await pool.query('SELECT * FROM projects WHERE manager_id = ? OR id IN (SELECT project_id FROM tasks WHERE assignee_id = ?)', [userId, userId]);
         res.json(rows);
     } catch (err) {
         res.status(500).json({ error: err.message });

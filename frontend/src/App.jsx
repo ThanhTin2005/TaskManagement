@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
-import Login from './pages/Login';
+import Login from './pages/Login';//Lỗi này là do cập nhật của TypeScript thôi , không ảnh hưởng gì đến chức năng của ứng dụng
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ProjectDetail from './pages/ProjectDetail'; // Chúng ta sẽ tạo file này ở Bước 2
