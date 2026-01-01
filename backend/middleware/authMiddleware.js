@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 ///Require là hàm để import thư viện , module hoặc file khác vào sử dụng trong file hiện tại
 
 const protect = async (req, res, next) => { ///protect chính là hàm arrow (mũi tên) tượng đương với hàm lambda trong C++
+    console.log("===> Có yêu cầu đang đi qua trạm kiểm soát protect!");
     let token; /// let là từ khoá khai báo biến có thể thay đổi được trong js , và chỉ tồn tại trong dấu {}
     /// Vì token ban đầu chưa có giá trị nên sử dụng let để khai báo
 
@@ -19,6 +20,7 @@ const protect = async (req, res, next) => { ///protect chính là hàm arrow (m�
 
             // Gán thông tin user vào request để các hàm sau sử dụng
             req.user = decoded; 
+            ///req.user không chỉ là userid hay username mà là toàn bộ thông tin user đã mã hoá trong token bao gồm id, username, email, role,...
             /// Gán thông tin người dùng đã giải mã vào request để các hàm sau có thể sử dụng
             
             next(); // Cho phép đi tiếp

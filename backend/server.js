@@ -15,6 +15,10 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);     // Ví dụ: http://localhost:5001/api/auth/login
 app.use('/api/projects', projectRoutes); // Ví dụ: http://localhost:5001/api/projects
 app.use('/api/tasks', taskRoutes);       // Ví dụ: http://localhost:5001/api/tasks
+//Tại MainLayout.jsx gọi API: http://localhost:5001/api/projects/my-projects
+//thì sẽ vào projectRoutes.js, tìm route /my-projects và gọi hàm getProjectsByUser trong projectController.js
+//Hàm getProjectsByUser sẽ lấy userID từ req.user.id (được gán bởi middleware protect trong authMiddleware.js)
+
 
 // Global Error Handler
 app.use((err, req, res, next) => {

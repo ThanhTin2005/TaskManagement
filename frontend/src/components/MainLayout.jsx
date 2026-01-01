@@ -22,9 +22,11 @@ export default function MainLayout() {
     const fetchProjects = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5001/api/projects/1', {
+        const response = await axios.get('http://localhost:5001/api/projects/my-projects', {
           headers: { Authorization: `Bearer ${token}` }
         });
+        //cái response ta nhận được từ backend chính là danh sách các dự án của user hiện tại (chứa tất cả các thuộc tính có liên quan đến một project)
+        
         setProjects(response.data); // Đổ dữ liệu vào biến projects đã khai báo ở trên
       } catch (error) {
         console.error("Lỗi lấy dự án:", error);
